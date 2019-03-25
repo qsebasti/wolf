@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 17:07:15 by squiquem          #+#    #+#             */
-/*   Updated: 2018/09/24 20:45:03 by qsebasti         ###   ########.fr       */
+/*   Updated: 2019/03/25 18:30:59 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ void		print_error(char *cause)
 	exit(1);
 }
 
-int			quit(void)
+int			quit(t_env *e)
 {
+	mlx_destroy_image(e->mlx, e->img);
+	mlx_destroy_window(e->mlx, e->win);
 	exit(1);
 	return (0);
 }
@@ -38,6 +40,8 @@ int			main(int ac, char **av)
 		print_error("Non valid map");
 	init(e);
 	e->win = mlx_new_window(e->mlx, WIN_W, WIN_H, "wolf3d");
+	if (!(e->img = mlx_new_image(e->mlx, IMG_W, IMG_H)))
+		print_error("New window error");
 	mlx_centertop_window(e->win);
 	mlx_loop_hook(e->mlx, reload, e);
 	mlx_hook(e->win, KPRESS, KPRESSMASK, keypress, e);

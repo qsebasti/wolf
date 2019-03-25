@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 19:09:49 by squiquem          #+#    #+#             */
-/*   Updated: 2019/02/21 22:07:54 by qsebasti         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:25:56 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,8 +213,8 @@ int					keyrelease(int keycode, t_env *e);
 int					mousehook(int x, int y, t_env *e);
 int					check_barrier(t_env *e, double x, double y);
 
-int					quit(void);
-void				print_error(char*cause);
+int					quit(t_env *e);
+void				print_error(char *cause);
 
 int					reload(t_env *e);
 
@@ -241,6 +241,9 @@ void				pick_up(t_sprite *spri, t_env *e);
 void				ft_combsort(int *order, double *dist, int amount);
 
 void				init(t_env *e);
+t_sprite			init_sprite(int x, int y, int type, t_env *e);
+t_ixy				init_ixy(int x, int y);
+t_dxy				init_dxy(double x, double y);
 
 double				get_time(void);
 void				get_timeframe(t_env *e);

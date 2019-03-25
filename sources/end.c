@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 14:58:03 by squiquem          #+#    #+#             */
-/*   Updated: 2018/07/24 19:29:57 by qsebasti         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:35:24 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static t_dxy	door_gate(t_env *e)
 	j = (int)e->door.y;
 	i = (int)e->door.x;
 	if (!j || j == e->nbline - 1)
-		ret = (t_dxy){i, (j > 0 ? j - 1 : j + 1)};
+		ret = init_dxy(i, (j > 0 ? j - 1 : j + 1));
 	else if (!i || i == e->linelen - 1)
-		ret = (t_dxy){(i > 0 ? i - 1 : i + 1), j};
+		ret = init_dxy((i > 0 ? i - 1 : i + 1), j);
 	else
 		ret = new_door(e->worldmap, i, j);
 	return (ret);
@@ -40,7 +40,7 @@ void			win(t_env *e)
 {
 	t_dxy	a;
 
-//	a = (t_dxy){e->door.x, e->door.y};
+//	a = init_dxy(e->door.x, e->door.y);
 	a = door_gate(e);
 	if (e->scrg.end_status != VICTORY && e->scrg.end_status != ULOSE)
 		if (e->scrg.score == ENEMIES && close_enough(e->pos, a, 0.7))
@@ -54,7 +54,7 @@ void			lose(t_env *e, t_sprite s)
 {
 	t_dxy	a;
 
-	a = (t_dxy){s.x, s.y};
+	a = init_dxy(s.x, s.y);
 	if (e->scrg.end_status != VICTORY && e->scrg.end_status != ULOSE)
 		if ((close_enough(a, e->pos, 0.5) && s.tex == 5 && !s.hidden)
 				|| (!e->scrg.ammo_available && !e->bullet_start && !e->scrg.ammo

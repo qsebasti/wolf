@@ -6,7 +6,7 @@
 #    By: squiquem <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/23 19:01:27 by squiquem          #+#    #+#              #
-#    Updated: 2019/02/22 16:45:10 by qsebasti         ###   ########.fr        #
+#    Updated: 2019/03/25 20:46:45 by qsebasti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,25 +20,26 @@ OBJ_DIR			=	./objects/
 
 CPPFLAGS 		=	-I includes/
 
-SRC_FILES		=	draw.c \
-					hook.c \
-					hook2.c \
-					main.c \
+SRC_FILES		=	bullet.c \
 					calc.c \
-					textures.c \
+					calc_sprites.c \
+					checkdoor.c \
+					draw.c \
 					draw_walls.c \
-					sprites.c \
-					init.c \
-					parsing.c \
-					parsing2.c \
-					time.c \
-					bullet.c \
-					mousehook.c \
 					end.c \
 					enemies.c \
-					checkdoor.c \
-					calc_sprites.c \
-					hud.c
+					hook.c \
+					hook2.c \
+					hud.c \
+					init.c \
+					main.c \
+					mousehook.c \
+					parsing.c \
+					parsing2.c \
+					sprites.c \
+					textures.c \
+					time.c \
+					util.c
 
 OBJ_FILES		=	$(SRC_FILES:.c=.o)
 
@@ -56,7 +57,7 @@ MLX				=	-L minilibx/ -lmlx -framework OpenGL -framework AppKit
 
 CC				=	gcc
 
-CFLAGS			=	-Wall -Wextra -Werror -MMD -g3 -fsanitize=address
+CFLAGS			=	-Wall -Wextra -Werror -MMD #-g3 -fsanitize=undefined
 ##CFLAGS			=	-Wall -Wextra -Werror -MMD -Ofast -flto -march=native
 
 opti			:

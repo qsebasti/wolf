@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 15:02:34 by squiquem          #+#    #+#             */
-/*   Updated: 2018/06/29 16:06:00 by squiquem         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:29:49 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_dxy	calc_trfm(t_env *e, t_sprite spr)
 	double		invdet;
 	t_dxy		sprite;
 
-	sprite = (t_dxy){spr.x - e->pos.x, spr.y - e->pos.y};
+	sprite = init_dxy(spr.x - e->pos.x, spr.y - e->pos.y);
 	invdet = 1.0 / (e->plane.x * e->dir.y - e->plane.y * e->dir.x);
 	trfm.x = invdet * (e->dir.y * sprite.x - e->dir.x * sprite.y);
 	trfm.y = invdet * (e->plane.x * sprite.y - e->plane.y * sprite.x);
@@ -64,7 +64,7 @@ void	stripe_loop(t_sgmt drawy, t_ixy spriteonscreen, t_env *e, t_sprite s)
 				* e->obj[s.tex].size.x / spriteonscreen.x) / 256;
 		if (trfm.y > 0 && stp > 0 && stp < IMG_W && trfm.y < e->zbuffer[stp])
 		{
-			p = (t_ixy){stp, drawy.start - 1};
+			p = init_ixy(stp, drawy.start - 1);
 			while (++p.y < drawy.end)
 			{
 				tex.y = calc_sprite_texy(e, spriteonscreen, s, p);
@@ -94,7 +94,7 @@ void	stripe_loop_bullet(t_sgmt drawy, t_ixy spriteonscreen, t_env *e,
 				* e->obj[s.tex].size.x / spriteonscreen.x) / 256;
 		if (trfm.y > 0 && stp > 0 && stp < IMG_W && trfm.y < e->zbufferb[stp])
 		{
-			p = (t_ixy){stp, drawy.start - 1};
+			p = init_ixy(stp, drawy.start - 1);
 			while (++p.y < drawy.end)
 			{
 				tex.y = calc_sprite_texy(e, spriteonscreen, s, p);

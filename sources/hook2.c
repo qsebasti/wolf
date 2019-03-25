@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 16:33:39 by squiquem          #+#    #+#             */
-/*   Updated: 2018/09/26 17:50:58 by qsebasti         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:36:14 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ int		check_barrier(t_env *e, double x, double y)
 	t_dxy		pos;
 	t_dxy		spr_pos;
 
-	pos = (t_dxy){x, y};
+	pos = init_dxy(x, y);
 	i = -1;
 	while (++i < NUMSPRITES)
 	{
 		spr = e->sprite[e->spritesorder[i]];
-		spr_pos = (t_dxy){spr.x, spr.y};
+		spr_pos = init_dxy(spr.x, spr.y);
 		if (spr.tex == 0 || spr.tex == 1)
 		{
 			if (close_enough(pos, spr_pos, 0.5))

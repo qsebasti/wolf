@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 15:02:34 by squiquem          #+#    #+#             */
-/*   Updated: 2018/07/19 17:02:24 by qsebasti         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:45:35 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_one_sprite(t_env *e, t_sprite spr)
 	t_ixy		spriteonscreen;
 	t_sgmt		drawy;
 
-	sprite = (t_dxy){spr.x - e->pos.x, spr.y - e->pos.y};
+	sprite = init_dxy(spr.x - e->pos.x, spr.y - e->pos.y);
 	trfm = calc_trfm(e, spr);
 	spriteonscreen = calc_spriteonscreen(spr, trfm);
 	e->spritescreenx = (int)((IMG_W / 2) * (1 + trfm.x / trfm.y));
@@ -71,7 +71,7 @@ void	pick_up(t_sprite *spri, t_env *e)
 {
 	t_dxy	p;
 
-	p = (t_dxy){spri->x, spri->y};
+	p = init_dxy(spri->x, spri->y);
 	if (close_enough(e->pos, p, 0.5) && !spri->hidden && spri->tex == 3)
 	{
 		spri->hidden = 1;

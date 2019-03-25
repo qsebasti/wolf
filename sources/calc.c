@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 00:34:11 by squiquem          #+#    #+#             */
-/*   Updated: 2019/02/22 16:59:59 by qsebasti         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:46:37 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_dxy		calc_sidedist(t_dxy ray, t_env *e)
 	t_dxy	sidedist;
 	t_dxy	deltadist;
 
-	deltadist = (t_dxy){fabs(1 / ray.x), fabs(1 / ray.y)};
+	deltadist = init_dxy(fabs(1 / ray.x), fabs(1 / ray.y));
 	(ray.x < 0) ? (sidedist.x = (e->pos.x - e->map.x) * deltadist.x)
 		: (sidedist.x = (e->map.x + 1.0 - e->pos.x) * deltadist.x);
 	(ray.y < 0) ? (sidedist.y = (e->pos.y - e->map.y) * deltadist.y)
@@ -61,12 +61,12 @@ t_dxy		calc_floorwall(t_env *e, t_dxy ray)
 	t_dxy	floorwall;
 
 	if (e->side == 0 && ray.x > 0)
-		floorwall = (t_dxy){e->map.x, e->map.y + e->wallx};
+		floorwall = init_dxy(e->map.x, e->map.y + e->wallx);
 	else if (e->side == 0 && ray.x < 0)
-		floorwall = (t_dxy){e->map.x + 1.0, e->map.y + e->wallx};
+		floorwall = init_dxy(e->map.x + 1.0, e->map.y + e->wallx);
 	else if (e->side == 1 && ray.y > 0)
-		floorwall = (t_dxy){e->map.x + e->wallx, e->map.y};
+		floorwall = init_dxy(e->map.x + e->wallx, e->map.y);
 	else
-		floorwall = (t_dxy){e->map.x + e->wallx, e->map.y + 1.0};
+		floorwall = init_dxy(e->map.x + e->wallx, e->map.y + 1.0);
 	return (floorwall);
 }

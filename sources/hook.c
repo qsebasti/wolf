@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 18:05:10 by squiquem          #+#    #+#             */
-/*   Updated: 2019/02/20 20:30:43 by qsebasti         ###   ########.fr       */
+/*   Updated: 2019/03/25 18:45:18 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,7 @@ static void	key_hook_turn(t_env *e)
 static void	key_hook_end(t_env *e)
 {
 	if (e->key[KEY_ESC] == 1)
-	{
-		mlx_destroy_window(e->mlx, e->win);
-		exit(1);
-	}
+		quit(e);
 }
 
 int			key_hook(t_env *e)

@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 17:07:15 by squiquem          #+#    #+#             */
-/*   Updated: 2019/02/22 16:40:50 by qsebasti         ###   ########.fr       */
+/*   Updated: 2019/03/25 20:59:16 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,30 +152,22 @@ static void		init_sprites(t_env *e)
 {
 	int		randx[10];
 	int		randy[10];
+	int		i;
 
 	ft_memset(randx, 0, 10 * sizeof(*randx));
 	ft_memset(randy, 0, 10 * sizeof(*randy));
-	ft_rand(e, randx, randy, 10);
-/*		e->sprite[0] = (t_sprite){14, 14, 3, 384, 1, 0, 0, 0};
-		e->sprite[1] = (t_sprite){10, 10, 3, 384, 1, 0, 0, 0};
-		e->sprite[2] = (t_sprite){5, 10, 3, 384, 1, 0, 0, 0};
-		e->sprite[3] = (t_sprite){3, 16, 3, 384, 1, 0, 0, 0};
-		e->sprite[4] = (t_sprite){11, 5, 3, 384, 1, 0, 0, 0};
-		e->sprite[5] = (t_sprite){9, 9, 5, -150, 1, 0, 0, e->time};
-		e->sprite[6] = (t_sprite){2, 14, 5, -150, 1, 0, 0, e->time};
-		e->sprite[7] = (t_sprite){17, 9, 5, -150, 1, 0, 0, e->time};
-		e->sprite[8] = (t_sprite){11, 11, 1, 0, 1, 0, 0, 0};
-		e->sprite[9] = (t_sprite){3, 11, 0, 0, 1, 0, 0, 0};*/
-	e->sprite[0] = (t_sprite){randx[0], randy[0], 3, 384, 1, 0, 0, 0};
-	e->sprite[1] = (t_sprite){randx[1], randy[1], 3, 384, 1, 0, 0, 0};
-	e->sprite[2] = (t_sprite){randx[2], randy[2], 3, 384, 1, 0, 0, 0};
-	e->sprite[3] = (t_sprite){randx[3], randy[3], 3, 384, 1, 0, 0, 0};
-	e->sprite[4] = (t_sprite){randx[4], randy[4], 3, 384, 1, 0, 0, 0};
-	e->sprite[5] = (t_sprite){randx[5], randy[5], 5, -150, 1, 0, 0, e->time};
-	e->sprite[6] = (t_sprite){randx[6], randy[6], 5, -150, 1, 0, 0, e->time};
-	e->sprite[7] = (t_sprite){randx[7], randy[7], 5, -150, 1, 0, 0, e->time};
-	e->sprite[8] = (t_sprite){randx[8], randy[8], 1, 0, 1, 0, 0, 0};
-	e->sprite[9] = (t_sprite){randx[9], randy[9], 0, 0, 1, 0, 0, 0};
+	if (free_spaces(e) > 10 * 3)
+	{
+		ft_rand(e, randx, randy, 10);
+		i = 1;
+		e->sprite[0] = init_sprite(randx[0], randy[0], 0, e);
+		e->sprite[1] = init_sprite(randx[1], randy[1], 1, e);
+		while (++i < 7)
+			e->sprite[i] = init_sprite(randx[i], randy[i], 3, e);
+		i--;
+		while (++i < 10)
+			e->sprite[i] = init_sprite(randx[i], randy[i], 5, e);
+	}
 	print_pos(e, randx, randy);
 }
 
@@ -187,15 +179,15 @@ static t_dxy	place(t_env *e, int **map, int i, int j)
 {
 	t_dxy re;
 
-	re = (t_dxy){0, 0};
+	re = init_dxy(0, 0);
 	if (!map[e->nbline / 2 - i][e->linelen / 2 - j])
-		re = (t_dxy){e->linelen / 2 - j + 0.5, e->nbline / 2 - i + 0.5};
+		re = init_dxy(e->linelen / 2 - j + 0.5, e->nbline / 2 - i + 0.5);
 	else if (!map[e->nbline / 2 - i][e->linelen / 2 + j])
-		re = (t_dxy){e->linelen / 2 + j + 0.5, e->nbline / 2 - i + 0.5};
+		re = init_dxy(e->linelen / 2 + j + 0.5, e->nbline / 2 - i + 0.5);
 	else if (!map[e->nbline / 2 + i][e->linelen / 2 + j])
-		re = (t_dxy){e->linelen / 2 + j + 0.5, e->nbline / 2 + i + 0.5};
+		re = init_dxy(e->linelen / 2 + j + 0.5, e->nbline / 2 + i + 0.5);
 	else if (!map[e->nbline / 2 + i][e->linelen / 2 - j])
-		re = (t_dxy){e->linelen / 2 - j + 0.5, e->nbline / 2 + i + 0.5};
+		re = init_dxy(e->linelen / 2 - j + 0.5, e->nbline / 2 + i + 0.5);
 	return (re);
 }
 
@@ -209,7 +201,7 @@ static t_dxy	start_pos(t_env *e)
 	int		i;
 	int		j;
 
-	re = (t_dxy){0, 0};
+	re = init_dxy(0, 0);
 	i = 0;
 	while (e->nbline / 2 - i > 0 && e->nbline / 2 + i < e->nbline - 1)
 	{
@@ -232,12 +224,12 @@ static t_dxy	start_pos(t_env *e)
 
 void			init(t_env *e)
 {
-	//	e->door = (t_ixy){0, 0};
-	//	e->pos = (t_dxy){e->nbline / 2, e->linelen / 2};
+	//	e->door = init_ixy(0, 0);
+	//	e->pos = init_dxy(e->nbline / 2, e->linelen / 2);
 	e->pos = start_pos(e);
 	printf("x %f y %f\n", e->pos.x, e->pos.y);
-	e->dir = (t_dxy){1, 0};
-	e->plane = (t_dxy){0, 0.66};
+	e->dir = init_dxy(1, 0);
+	e->plane = init_dxy(0, 0.66);
 	e->oldtime = get_time();
 	e->time = e->oldtime + 1;
 	e->shoot_time = get_time();
@@ -245,11 +237,11 @@ void			init(t_env *e)
 	load_texture(e);
 	init_sprites(e);
 	e->bullet_start = 0;
-	//	e->door = (t_ixy){8, 5};
-	//e->mouse.x = WIN_W / 2;
 	e->mouse.x = 0;
 	e->mouse.y = WIN_W / 2;
-	e->scrg = (t_scoring){0, 0, 0, AMMO, ENEMIES, 0};
+	ft_bzero(&e->scrg, sizeof(e->scrg));
+	e->scrg.ammo_available = AMMO;
+	e->scrg.livingenemies = ENEMIES;
 	ft_memset(e->key, 0, sizeof(e->key));
 	ft_memset(&e->map, 0, sizeof(e->map));
 }
@@ -269,5 +261,4 @@ void			start_screen(t_env *e)
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	mlx_string_put(e->mlx, e->win, WIN_W / 2 - 20, WIN_H / 2, 0xff0000,\
 			"Press Enter");
-	mlx_destroy_image(e->mlx, e->img);
 }

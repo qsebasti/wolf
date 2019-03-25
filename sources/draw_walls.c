@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 15:02:34 by squiquem          #+#    #+#             */
-/*   Updated: 2019/02/22 16:11:11 by qsebasti         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:46:01 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void			draw_ceiling(t_ixy p, t_dxy currfloor, t_env *e)
 
 	floortex.x = (int)(currfloor.x * e->tex[9].size.x) % e->tex[9].size.x;
 	floortex.y = (int)(currfloor.y * e->tex[9].size.y) % e->tex[9].size.y;
-	q = (t_ixy){p.x, IMG_H - p.y};
+	q = init_ixy(p.x, IMG_H - p.y);
 	get_img_color(&e->tex[9], floortex, &c);
 	draw_point(e, q, &c);
 }

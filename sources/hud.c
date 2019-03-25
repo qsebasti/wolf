@@ -6,7 +6,7 @@
 /*   By: qsebasti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 15:46:20 by qsebasti          #+#    #+#             */
-/*   Updated: 2018/07/24 15:19:14 by qsebasti         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:37:05 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void		hud_minia(t_ixy drawy, t_env *e, t_img s, t_ixy start)
 	while (++stp < start.x + drawy.x)
 	{
 		tex.x = stp - start.x;
-		p = (t_ixy){stp, start.y - 1};
+		p = init_ixy(stp, start.y - 1);
 		while (++p.y < start.y + drawy.y)
 		{
 			tex.y = p.y - start.y;
@@ -55,8 +55,8 @@ static void		init_minia(t_env *e)
 	i = -1;
 	while (++i < 2)
 	{
-		start = (t_ixy){WIN_W - 135 + i * 20, WIN_H - 155 + i * 80};
-		drawy = (t_ixy){s[i].size.x, s[i].size.y};
+		start = init_ixy(WIN_W - 135 + i * 20, WIN_H - 155 + i * 80);
+		drawy = init_ixy(s[i].size.x, s[i].size.y);
 		hud_minia(drawy, e, s[i], start);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 15:02:34 by squiquem          #+#    #+#             */
-/*   Updated: 2018/07/19 17:06:54 by qsebasti         ###   ########.fr       */
+/*   Updated: 2019/03/25 20:58:00 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ int			key_hook_shoot(int button, int x, int y, t_env *e)
 	{
 		if (button == 1 && !e->bullet_start && e->scrg.ammo != 0)
 		{
-			e->bullet = (t_bullet){{e->pos.x, e->pos.y, 4, 50, 5, 0, 0, 0},
-				e->dir, e->pos};
+			e->bullet.sprite = init_sprite(e->pos.x, e->pos.y, 4, e);
+			//e->bullet = (t_bullet){{e->pos.x, e->pos.y, 4, 50, 5, 0, 0, 0},
+			//	e->dir, e->pos};
+			e->bullet.dir = e->dir;
+			e->bullet.pos = e->pos;
 			e->shoot_time = get_time();
 			e->bullet_start = 1;
 			e->scrg.ammo--;
@@ -39,8 +42,8 @@ static int	check_hit(t_env *e)
 	while (++i < NUMSPRITES)
 	{
 		s = e->sprite[e->spritesorder[i]];
-		a = (t_dxy){e->bullet.sprite.x, e->bullet.sprite.y};
-		b = (t_dxy){s.x, s.y};
+		a = init_dxy(e->bullet.sprite.x, e->bullet.sprite.y);
+		b = init_dxy(s.x, s.y);
 		if (s.tex == 5 && close_enough(a, b, 0.5) && !s.hidden)
 		{
 			e->sprite[e->spritesorder[i]].hidden = 1;
@@ -67,7 +70,7 @@ void		draw_bullet(t_env *e)
 	t_sprite	spr;
 
 	spr = e->bullet.sprite;
-	sprite = (t_dxy){spr.x - e->pos.x, spr.y - e->pos.y};
+	sprite = init_dxy(spr.x - e->pos.x, spr.y - e->pos.y);
 	trfm = calc_trfm(e, spr);
 	spriteonscreen = calc_spriteonscreen(spr, trfm);
 	e->spritescreenx = (int)((IMG_W / 2) * (1 + trfm.x / trfm.y));

@@ -6,7 +6,7 @@
 /*   By: qsebasti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 19:04:49 by qsebasti          #+#    #+#             */
-/*   Updated: 2018/09/05 23:08:48 by qsebasti         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:31:07 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ t_dxy			new_door(int **tab, int i, int j)
 {
 	t_dxy ret;
 
-	ret = (t_dxy){0, 0};
+	ret = init_dxy(0, 0);
 	if (tab[i][j - 1] == 0)
-		ret = (t_dxy){i, j - 1};
+		ret = init_dxy(i, j - 1);
 	else if (tab[i][j + 1] == 0)
-		ret = (t_dxy){i, j + 1};
+		ret = init_dxy(i, j + 1);
 	else if (tab[i + 1][j] == 0)
-		ret = (t_dxy){i + 1, j};
+		ret = init_dxy(i + 1, j);
 	else if (tab[i - 1][j] == 0)
-		ret = (t_dxy){i - 1, j};
+		ret = init_dxy(i - 1, j);
 	return (ret);
 }
 
@@ -63,7 +63,7 @@ int				check_proxi2(t_env *e, int i, int j)
 		nb++;
 	if (i - 1 > -1 && j - 1 > 0 && e->worldmap[i - 1][j - 1] == 0)
 		nb++;
-	if (i + 1 < e->nbline && j + 1 < e->linelen\
+	if (i + 1 < e->nbline && j + 1 < e->linelen
 			&& e->worldmap[i + 1][j + 1] == 0)
 		nb++;
 	if (i + 1 < e->nbline && j - 1 > 0 && e->worldmap[i + 1][j - 1] == 0)
@@ -116,7 +116,7 @@ void			checkdoor(t_env *e)
 						count--;
 				if (count == 1 && e->door.x == 0 && e->door.y == 0)
 				{
-					e->door = (t_ixy){i, j};
+					e->door = init_ixy(i, j);
 					printf("porte : %d, %d\n", i, j);
 				}
 				else
