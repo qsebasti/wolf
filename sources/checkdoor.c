@@ -6,7 +6,7 @@
 /*   By: qsebasti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 19:04:49 by qsebasti          #+#    #+#             */
-/*   Updated: 2019/03/25 19:31:07 by qsebasti         ###   ########.fr       */
+/*   Updated: 2019/03/26 18:39:59 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void			checkdoor(t_env *e)
 						count--;
 				if (count == 1 && e->door.x == 0 && e->door.y == 0)
 				{
-					e->door = init_ixy(i, j);
+					e->door = init_ixy(j, i);
 					printf("porte : %d, %d\n", i, j);
 				}
 				else

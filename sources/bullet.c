@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 15:02:34 by squiquem          #+#    #+#             */
-/*   Updated: 2019/03/25 20:58:00 by qsebasti         ###   ########.fr       */
+/*   Updated: 2019/03/26 17:24:23 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int			key_hook_shoot(int button, int x, int y, t_env *e)
 	{
 		if (button == 1 && !e->bullet_start && e->scrg.ammo != 0)
 		{
-			e->bullet.sprite = init_sprite(e->pos.x, e->pos.y, 4, e);
-			//e->bullet = (t_bullet){{e->pos.x, e->pos.y, 4, 50, 5, 0, 0, 0},
-			//	e->dir, e->pos};
-			e->bullet.dir = e->dir;
-			e->bullet.pos = e->pos;
+			e->bullet = (t_bullet){{e->pos.x, e->pos.y, 4, 50, 5, 0, 0, 0},
+				e->dir, e->pos};
+			//e->bullet.sprite = init_sprite(e->pos.x, e->pos.y, 4, e);
+			//e->bullet.dir = e->dir;
+			//e->bullet.pos = e->pos;
 			e->shoot_time = get_time();
 			e->bullet_start = 1;
 			e->scrg.ammo--;

@@ -6,7 +6,7 @@
 #    By: squiquem <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/23 19:01:27 by squiquem          #+#    #+#              #
-#    Updated: 2019/03/25 20:46:45 by qsebasti         ###   ########.fr        #
+#    Updated: 2019/03/26 15:05:57 by qsebasti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC_FILES		=	bullet.c \
 					hud.c \
 					init.c \
 					main.c \
+					map.c \
 					mousehook.c \
 					parsing.c \
 					parsing2.c \

@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 19:09:49 by squiquem          #+#    #+#             */
-/*   Updated: 2019/03/25 19:25:56 by qsebasti         ###   ########.fr       */
+/*   Updated: 2019/03/26 18:29:30 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,22 @@
 # define GREEN				0x00cc00
 # define BROWN				0xcc6600
 # define GRAY				0x999999
-# define FUSHIA				0xcc00cc
+# define FUSCHIA			0xcc00cc
 # define YELLOW				0xcccc00
 # define CYAN				0xccffff
 # define WHITE				0xffffff
 # define RED				0xff0000
 # define SNOW				0xfffafa
+# define LIGHT_GREY			0xd2d0d2
+# define GREY				0xb0b0b0
+# define MIDGREY			0x999999
+# define DARK_GREY			0x454545
+
+typedef struct		s_point
+{
+	int				x;
+	int				y;
+}					t_point;
 
 typedef struct		s_ixy
 {
@@ -280,6 +290,7 @@ t_dxy				calc_trfm(t_env *e, t_sprite spr);
 void				start_screen(t_env *e);
 void				end_screen(t_env *e);
 void				hud(t_env *e);
+void				map(t_env *e);
 t_dxy				new_door(int **tab, int i, int j);
 void				put_point(t_env *e, int x, int y, int color);
 int					free_spaces(t_env *e);

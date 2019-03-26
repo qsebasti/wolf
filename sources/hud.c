@@ -6,7 +6,7 @@
 /*   By: qsebasti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 15:46:20 by qsebasti          #+#    #+#             */
-/*   Updated: 2019/03/25 19:37:05 by qsebasti         ###   ########.fr       */
+/*   Updated: 2019/03/26 17:21:22 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void			hud(t_env *e)
 	init_minia(e);
 	hud_sights(e);
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
+	map(e);
 	print_time(e);
 	aff[0] = ft_itoa(e->scrg.ammo);
 	aff[1] = ft_itoa(e->scrg.livingenemies);
