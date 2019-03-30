@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 19:09:49 by squiquem          #+#    #+#             */
-/*   Updated: 2019/03/26 18:29:30 by qsebasti         ###   ########.fr       */
+/*   Updated: 2019/03/30 12:02:40 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,10 +184,6 @@ typedef struct		s_env
 	double			spritesdistance[NUMSPRITES];//sprites
 	int				bullet_start;
 	t_bullet		bullet;
-//	int				score;
-//	int				end_status;
-//	int				ammo;
-//	int				ammo_available;
 	t_scoring		scrg;
 	t_ixy			door;
 	double			time;
@@ -254,6 +250,7 @@ void				init(t_env *e);
 t_sprite			init_sprite(int x, int y, int type, t_env *e);
 t_ixy				init_ixy(int x, int y);
 t_dxy				init_dxy(double x, double y);
+t_sgmt				init_sgmt(int start, int end);
 
 double				get_time(void);
 void				get_timeframe(t_env *e);

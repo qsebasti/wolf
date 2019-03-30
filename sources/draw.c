@@ -6,7 +6,7 @@
 /*   By: squiquem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 00:34:11 by squiquem          #+#    #+#             */
-/*   Updated: 2019/03/25 19:46:56 by qsebasti         ###   ########.fr       */
+/*   Updated: 2019/03/30 12:03:36 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static void		draw_wall_line(int x, t_env *e)
 	e->perpwalldist = calc_wall_size(sidedist, ray, step, e);
 	e->zbuffer[x] = e->perpwalldist;
 	e->zbufferb[x] = e->perpwalldist;
-	draw = (t_sgmt){(IMG_H - (int)(IMG_H / e->perpwalldist)) / 2,
-		(IMG_H + (int)(IMG_H / e->perpwalldist)) / 2};
+	draw = init_sgmt((IMG_H - (int)(IMG_H / e->perpwalldist)) / 2,
+		(IMG_H + (int)(IMG_H / e->perpwalldist)) / 2);
 	e->wallx = ((e->side) ? (e->pos.x + e->perpwalldist * ray.x)
 			: (e->pos.y + e->perpwalldist * ray.y));
 	e->wallx -= floor(e->wallx);

@@ -6,7 +6,7 @@
 /*   By: qsebasti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 18:43:48 by qsebasti          #+#    #+#             */
-/*   Updated: 2019/03/25 19:51:59 by qsebasti         ###   ########.fr       */
+/*   Updated: 2019/03/30 12:02:13 by qsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,13 @@ t_dxy		init_dxy(double x, double y)
 	point.x = x;
 	point.y = y;
 	return (point);
+}
+
+t_sgmt		init_sgmt(int start, int end)
+{
+	t_sgmt	s;
+
+	s.start = start;
+	s.end = end;
+	return (s);
 }
